@@ -1,0 +1,41 @@
+Component,Description,Part,References,Value,Footprint,Quantity Per PCB,Datasheet,LCSC Nr.,LCSC
+1,Unpolarized capacitor,C,C12,100n,R_0603_HandSoldering,1,~,,
+2,Unpolarized capacitor,C,C3 C4 C7 C8 C10 C11,10uF,C_0603_HandSoldering,6,~,C307460,
+3,Polarized capacitor,CP,C1 C2 C5 C6 C9,100u,CP_Elec_5x5.7,5,~,,C3347
+4,Light emitting diode,LED,D4,5V_Matrix_Present,LED_0603_HandSoldering,1,~,,
+5,Light emitting diode,LED,D3,5V_Pi_Present,LED_0603_HandSoldering,1,~,,
+6,Light emitting diode,LED,D5 D6,LED,LED_0603_HandSoldering,2,~,,
+7,,SS34,D1 D2,SS34,D_SMA-SMB_Universal_Handsoldering,2,https://lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_BORN-SS34_C266556.html,,
+8,Fuse,Fuse,F1 F2,"3,5A",Fuse_24E1300A,2,~,,
+9,Fuse,Fuse,F3,"PTC, 1,5A",Resistor_SMDuniversal_0805to1206_HandSoldering,1,~,,
+10,"Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)",Conn_01x02_Male,J3 J4,CONN_BAT1,JST_PH_S2B-PH-K_02x2.00mm_Angled,2,https://lcsc.com/product-detail/Wire-To-Board-Wire-To-Wire-Connector_BOOMELE-Boom-Precision-Elec-PH-2AWD_C49992.html,C49992,
+11,"Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)",Conn_01x02_Female,J1 J2,PWR_PI,PhoenixContact_MC-G_02x5.08mm_Angled,2,~,,
+12,Inductor,L,L1 L2,15u,L_7.3x7.3_H4.5,2,~,,
+13,,FS8205,Q1,FS8205,SOT-23-6_Handsoldering,1,https://lcsc.com/product-detail/MOSFETs_Fortune-Semicon-FS8205_C32254.html,C32254,
+14,,KND8003A,Q2,KND8003A,TO-252-2,1,https://lcsc.com/product-detail/MOSFETs_KIA-Semicon-Tech-KND8103A_C709687.html,C709687,
+15,Resistor,R,R10,100,R_0603_HandSoldering,1,~,,
+16,Resistor,R,R2 R4 R5 R6 R7 R8 R11,1k,R_0603_HandSoldering,7,~,,
+17,Resistor,R,R9,2k,R_0603_HandSoldering,1,~,,
+18,Resistor,R,R1 R3,"7,5k",R_0603_HandSoldering,2,~,,
+19,Resistor,R,Rprog1,2k,C_0603_HandSoldering,1,~,,
+20,"Switch, single pole double throw",SW_SPDT,SW1,SW_SPDT,Pin_Header_Straight_1x03_Pitch2.54mm,1,~,,
+21,,FS312F-G,U4,FS312F-G,SOT-23-6_Handsoldering,1,https://lcsc.com/product-detail/Battery-Management-ICs_Fortune-Semicon-DW01-G_C14213.html,C14213,
+22,"High Efficiency 1.2MHz 2A Step Up Converter, 2-24V Vin, 28V Vout, 4A current limit, 1.2MHz, SOT23-6",MT3608,U1 U2,MT3608,SOT-23-6_Handsoldering,2,https://www.olimex.com/Products/Breadboarding/BB-PWR-3608/resources/MT3608.pdf,,
+23,,TP4056,U3,TP4056,SOIC-8-1EP_3.9x4.9mm_Pitch1.27mm,1,https://lcsc.com/product-detail/Battery-Management-ICs_TOPPOWER-Nanjing-Extension-Microelectronics-TP4056-42-ESOP8_C16581.html,C16581,
+24,,USBC_Straight,X1,USBC_Straight,USB_C_Straight,1,https://lcsc.com/product-detail/span-style-background-color-ff0-USB-span-Connectors_Jing-Extension-of-the-Electronic-Co-918-468K2029E50001_C709026.html,,
+
+
+
+
+
+Component Groups:,24
+Component Count:,47
+Fitted Components:,47
+Number of PCBs:,1
+Total components:,47
+Schematic Version:,
+Schematic Date:,
+PCB Variant:,default
+BoM Date:,12.12.2021 10:51:02
+Schematic Source:,RGB Matrix High Power LiPo Board.sch
+KiCad Version:,Eeschema (5.1.12)-1
