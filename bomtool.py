@@ -1,4 +1,5 @@
-import sys, csv, pandas as pd
+from io import StringIO
+import sys, csv, pandas as pd, os
 
 __ver = "1.0.0"
 
@@ -26,10 +27,31 @@ else:
 
 if __arg_ok == True:
     #Read CSV File:
-    csv_file = open(bom_file_pth, encoding="UTF8")
-    bom_data = csv.reader(csv_file)
-    csv_file.close()
+    with open("bom.csv", 'r') as file:
+        try:
+            os.remove(".bom.json")
+        except:
+            print("JSON Daten nichtmehr vorhanden")
+        _json = open(".bom.json", "w")
+        _json.write("{")
+        csv_file = csv.DictReader(file)
+        i = 0
+        for row in csv_file:
+            print(dict(row))
+            _json.write("\""+str(i)+"\":"+str(dict(row))+",")
+            i += 1
+    _json.write("}")
+    _json.close()
+    _replace = open(".bom.json", "r")
+    _replaced_data = ""
+    for line in _replace:
+        _data = line.strip()
+        _new_data = _data.replace("'", "\"")
+        _replaced_data += _new_data+"\n"
+    _replace.close()
+    os.remove(".bom.json")
+    _new_json = open(".bom.json", "w")
+    _new_json.write(_replaced_data)
     #xlsx_file = pd.read_excel(database_pth)
     #data = pd.DataFrame(xlsx_file, columns=[xlsx_label])
     #data_length = len(data)
-    print(bom_data)
