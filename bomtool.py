@@ -1,7 +1,7 @@
-from io import StringIO
-import sys, csv, pandas as pd, os
+import sys, csv, pandas as pd, os, json
 
 __ver = "1.0.0"
+
 
 arg_len = len(sys.argv)
 __arg_ok = 0
@@ -25,8 +25,8 @@ else:
     xlsx_label = sys.argv[4]
     __arg_ok = True
 
-if __arg_ok == True:
-    #Read CSV File:
+def parse_bom_data_to_json():
+    global csv_headings
     with open("bom.csv", 'r') as file:
         try:
             os.remove(".bom.json")
@@ -37,21 +37,41 @@ if __arg_ok == True:
         csv_file = csv.DictReader(file)
         i = 0
         for row in csv_file:
-            print(dict(row))
             _json.write("\""+str(i)+"\":"+str(dict(row))+",")
             i += 1
+    _json.write("\"end\":\"end\"")
     _json.write("}")
     _json.close()
     _replace = open(".bom.json", "r")
     _replaced_data = ""
-    for line in _replace:
-        _data = line.strip()
+    for _line in _replace:
+        _data = _line.strip()
         _new_data = _data.replace("'", "\"")
+        _new_data = _new_data.replace("None", "\"None\"")
         _replaced_data += _new_data+"\n"
     _replace.close()
-    os.remove(".bom.json")
     _new_json = open(".bom.json", "w")
     _new_json.write(_replaced_data)
-    #xlsx_file = pd.read_excel(database_pth)
-    #data = pd.DataFrame(xlsx_file, columns=[xlsx_label])
-    #data_length = len(data)
+
+
+
+if __arg_ok == True:
+    #Read CSV File:
+    xlsx_file = pd.read_excel(database_pth)
+    data = pd.DataFrame(xlsx_file)
+    parse_bom_data_to_json()
+    json_file = open(".bom.json", "r")
+    buffer = ""
+    for line in json_file:
+            buffer += line.strip()
+    bom_dict = json.loads(buffer)
+    #print(data["LCSC"][3])
+    for x in range(len(bom_dict) -1 ):
+        for y in range(len(data)):
+            if bom_dict[str(x)][csv_coloum] == data[xlsx_label][y]:
+                print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                print("Match at x=" + str(x) + ", y=" + str(y))
+                print(data.iloc[y])
+                print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    
+

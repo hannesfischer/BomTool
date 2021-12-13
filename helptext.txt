@@ -1,1 +1,4 @@
-Usage: bomtool.py [Bom File {.csv Format}] [Database File {.xlsx format}] [CSV Partnumer Coloum] [XLSX Partnumber Coloum Label]
+Usage: bomtool.py [Bom File {.csv Format}] [Database File {.xlsx format}] [CSV Partnumber Coloum Label] [XLSX Partnumber Coloum Label]
+
+Example:
+python ./bomtool.py ./bom.csv ./storage.xlsx "csv Label" "Excel Label"
