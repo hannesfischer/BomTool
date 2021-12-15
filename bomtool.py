@@ -6,11 +6,12 @@ __ver = "1.0.0"
 arg_len = len(sys.argv)
 __arg_ok = 0
 
+
+
 if(arg_len != 5):
     _f = open("helptext.txt", "r")
     print("Python BoM-Tool V" + __ver)
     print(_f.read())
-
 elif (arg_len == 2):
     arg = sys.argv[1]
     if arg == "-h":
@@ -24,6 +25,8 @@ else:
     csv_coloum = sys.argv[3]
     xlsx_label = sys.argv[4]
     __arg_ok = True
+
+
 
 def parse_bom_data_to_json():
     global csv_headings
@@ -57,21 +60,26 @@ def parse_bom_data_to_json():
 
 if __arg_ok == True:
     #Read CSV File:
-    xlsx_file = pd.read_excel(database_pth)
-    data = pd.DataFrame(xlsx_file)
+    try:
+        xlsx_file = pd.read_excel(database_pth)
+        data = pd.DataFrame(xlsx_file)
+    except:
+        print("Couldn't load excel File!")
     parse_bom_data_to_json()
     json_file = open(".bom.json", "r")
     buffer = ""
     for line in json_file:
             buffer += line.strip()
     bom_dict = json.loads(buffer)
+    json_file.close()
+    os.remove(".bom.json")
     #print(data["LCSC"][3])
     for x in range(len(bom_dict) -1 ):
         for y in range(len(data)):
             if bom_dict[str(x)][csv_coloum] == data[xlsx_label][y]:
                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                 print("Match at x=" + str(x) + ", y=" + str(y))
-                print(data.iloc[y])
+                print(data.iloc[y][1])
                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     
 
