@@ -73,6 +73,9 @@ if __arg_ok == True:
         data = pd.DataFrame(xlsx_file)
     except:
         print("Couldn't load excel File!")
+
+    #parse KiCad BOM data to json format
+
     parse_bom_data_to_json()
     json_file = open(".bom.json", "r")
     buffer = ""
@@ -81,31 +84,32 @@ if __arg_ok == True:
     bom_dict = json.loads(buffer)
     json_file.close()
     os.remove(".bom.json")
-    #print(data["LCSC"][3])
     try:
         os.remove("./output.html")
     except:
         print("Error removing \"output.html\". Has it been removed already?")
+
+    #create output file and start filling it with html
+
     output = open("./output.html", "w")
     output.write(open("./req/html_head.html", "r").read())
+    
+    #check each line of the bom with each line of the xlsx file, write the used parts to the html file and skip the ones allready written to it.
+
     for x in range(len(bom_dict) -1 ):
         for y in range(len(data)):
             if bom_dict[str(x)][csv_coloum] == data[xlsx_label][y]:
-                #print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                #output.write(str(data.iloc[y][0]) + "\n" + str(data.iloc[y][xlsx_label]))
-                #output.write("\n\nPro Platine benoetigt:         " + bom_dict[str(x)]["Quantity Per PCB"])
-                #output.write("\n~~~~~~~~~~~~~~~~~~~~\n")
                 if not str(data.iloc[y][xlsx_label]) in queried_parts:
                     output.write(create_html_table(str(data.iloc[y][0]), str(data.iloc[y][1]), str(data.iloc[y][xlsx_label]), bom_dict[str(x)]["Quantity Per PCB"]))
                     queried_parts.append(str(data.iloc[y][xlsx_label]))
                 else:
                     print("Part exists. Skipped it.")
-                #print(data.iloc[y][1])
-                #print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                #print("")
-                #dump_string = str(bom_dict[str(x)][0][0]) + " at " + str(data.iloc[y])
-                #print(dump_string)
+    #finish up the html and close the file
+    
     output.write(open("./req/html_foot.html", "r").read())
     output.close()
+
+    #check the current path and open the html file in the webbrowser
+    
     file_path = os.path.dirname(os.path.abspath(__file__)) + "\output.html"
     webbrowser.open(file_path)
