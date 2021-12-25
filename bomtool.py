@@ -74,12 +74,23 @@ if __arg_ok == True:
     json_file.close()
     os.remove(".bom.json")
     #print(data["LCSC"][3])
+    try:
+        os.remove("./output.txt")
+    except:
+        print("")
+    output = open("./output.txt", "w")
+
     for x in range(len(bom_dict) -1 ):
         for y in range(len(data)):
             if bom_dict[str(x)][csv_coloum] == data[xlsx_label][y]:
-                print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                print("Match at x=" + str(x) + ", y=" + str(y))
-                print(data.iloc[y][1])
-                print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-    
+                #print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                output.write(str(data.iloc[y]))
+                output.write("\n\nPro Platine benoetigt:         " + bom_dict[str(x)]["Quantity Per PCB"])
+                output.write("\n~~~~~~~~~~~~~~~~~~~~\n")
+                #print(data.iloc[y][1])
+                #print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                #print("")
+                #dump_string = str(bom_dict[str(x)][0][0]) + " at " + str(data.iloc[y])
+                #print(dump_string)
+    output.close()
 

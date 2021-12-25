@@ -1,0 +1,77 @@
+Bezeichnung                       SMD KerKo
+Bauform / techn Daten      0603, 10uF, 6.3V
+Anzahl                                   34
+Lagerort                           BoxAll24
+LCSC                                C307460
+Stichwort                       Kondensator
+KiCad Symbol Vorhanden?                 NaN
+Name: 86, dtype: object
+
+Pro Platine benoetigt:         6
+~~~~~~~~~~~~~~~~~~~~
+Bezeichnung                FS8205 Dual Mosfet
+Bauform / techn Daten                SOT-23-6
+Anzahl                                     20
+Lagerort                             BoxAll44
+LCSC                                   C32254
+Stichwort                              Mosfet
+KiCad Symbol Vorhanden?                   NaN
+Name: 22, dtype: object
+
+Pro Platine benoetigt:         1
+~~~~~~~~~~~~~~~~~~~~
+Bezeichnung                            KND9103A Mosfet
+Bauform / techn Daten      30V, 30A, TO-252, N-Channel
+Anzahl                                              25
+Lagerort                                      BoxAll94
+LCSC                                           C709687
+Stichwort                                   Transistor
+KiCad Symbol Vorhanden?                             ja
+Name: 170, dtype: object
+
+Pro Platine benoetigt:         1
+~~~~~~~~~~~~~~~~~~~~
+Bezeichnung                            KND9103A Mosfet
+Bauform / techn Daten      30V, 30A, TO-252, N-Channel
+Anzahl                                              25
+Lagerort                                      BoxAll95
+LCSC                                           C709687
+Stichwort                                   Transistor
+KiCad Symbol Vorhanden?                             ja
+Name: 171, dtype: object
+
+Pro Platine benoetigt:         1
+~~~~~~~~~~~~~~~~~~~~
+Bezeichnung                            KND9103A Mosfet
+Bauform / techn Daten      30V, 30A, TO-252, N-Channel
+Anzahl                                              25
+Lagerort                                      BoxAll96
+LCSC                                           C709687
+Stichwort                                   Transistor
+KiCad Symbol Vorhanden?                             ja
+Name: 172, dtype: object
+
+Pro Platine benoetigt:         1
+~~~~~~~~~~~~~~~~~~~~
+Bezeichnung                DW01G PMIC
+Bauform / techn Daten        SOT-23-6
+Anzahl                             22
+Lagerort                     BoxAll52
+LCSC                           C14213
+Stichwort                        PMIC
+KiCad Symbol Vorhanden?           NaN
+Name: 21, dtype: object
+
+Pro Platine benoetigt:         1
+~~~~~~~~~~~~~~~~~~~~
+Bezeichnung                TP4056 PMIC LiPO Charger
+Bauform / techn Daten             SOP-8, 0,13A - 1A
+Anzahl                                           26
+Lagerort                                   BoxAll20
+LCSC                                         C16581
+Stichwort                                      PMIC
+KiCad Symbol Vorhanden?                         NaN
+Name: 89, dtype: object
+
+Pro Platine benoetigt:         1
+~~~~~~~~~~~~~~~~~~~~
