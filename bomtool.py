@@ -1,7 +1,8 @@
 import sys, csv, pandas as pd, os, json, webbrowser
+from colorama import Fore, Style, init
+init()
 
-
-__ver = "1.1.3"
+__ver = "1.1.4"
 
 html_table = ""
 queried_parts = []
@@ -11,13 +12,13 @@ __arg_ok = 0
 
 
 if(arg_len != 5):
-    _f = open("req/helptext.txt", "r")
+    _f = open("./req/helptext.txt", "r")
     print("Python BoM-Tool V" + __ver)
     print(_f.read())
 elif (arg_len == 2):
     arg = sys.argv[1]
     if arg == "-h":
-        _f = open("req/helptext.txt", "r")
+        _f = open("./req/helptext.txt", "r")
         print("Python BoM-Tool V" + __ver)
         print(_f.read())
         _f.close()
@@ -36,7 +37,7 @@ def parse_bom_data_to_json():
         try:
             os.remove(".bom.json")
         except:
-            print("JSON data missing. Creating new one ...")
+            print(f"{Fore.YELLOW}JSON data missing. Creating new one ...{Style.RESET_ALL}")
         _json = open(".bom.json", "w")
         _json.write("{")
         csv_file = csv.DictReader(file)
@@ -72,7 +73,7 @@ if __arg_ok == True:
         xlsx_file = pd.read_excel(database_pth)
         data = pd.DataFrame(xlsx_file)
     except:
-        print("Couldn't load excel File!")
+        print(f"{Fore.RED}Couldn't load excel File!{Style.RESET_ALL}")
 
     #parse KiCad BOM data to json format
 
@@ -87,7 +88,7 @@ if __arg_ok == True:
     try:
         os.remove("./output.html")
     except:
-        print("Error removing \"output.html\". Has it been removed already?")
+        print(f"Error removing \"output.html\". Has it been removed already?")
 
     #create output file and start filling it with html
 
@@ -103,7 +104,7 @@ if __arg_ok == True:
                     output.write(create_html_table(str(data.iloc[y][0]), str(data.iloc[y][1]), str(data.iloc[y][xlsx_label]), bom_dict[str(x)]["Quantity Per PCB"]))
                     queried_parts.append(str(data.iloc[y][xlsx_label]))
                 else:
-                    print("Part exists. Skipped it.")
+                    print(f"{Fore.YELLOW}Part exists. Skipped it.{Style.RESET_ALL}")
     #finish up the html and close the file
     
     output.write(open("./req/html_foot.html", "r").read())
@@ -112,4 +113,5 @@ if __arg_ok == True:
     #check the current path and open the html file in the webbrowser
     
     file_path = os.path.dirname(os.path.abspath(__file__)) + "\output.html"
+    print(f"{Fore.GREEN}open Browser ... {Style.RESET_ALL}")
     webbrowser.open(file_path)
