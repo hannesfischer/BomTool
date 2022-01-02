@@ -7,9 +7,8 @@ __ver = "1.1.4"
 html_table = ""
 queried_parts = []
 
-arg_len = len(sys.argv)
+arg_len = len(sys.argv) 
 __arg_ok = 0
-
 
 if(arg_len != 5):
     _f = open("./req/helptext.txt", "r")
@@ -33,7 +32,7 @@ else:
 
 def parse_bom_data_to_json():
     global csv_headings
-    with open("bom.csv", 'r') as file:
+    with open(bom_file_pth, 'r') as file:
         try:
             os.remove(".bom.json")
         except:
@@ -60,8 +59,8 @@ def parse_bom_data_to_json():
     _new_json.write(_replaced_data)
 
 
-def create_html_table(desc, parameters, partnr, required):
-    html = "<tr><td>" + desc + "</td><td>" + parameters + "</td><td>" + partnr + "</td><td>" + required + "</tr>\n"
+def create_html_table(desc, parameters, partnr):
+    html = "<tr><td>" + desc + "</td><td>" + parameters + "</td><td>" + partnr + "</td>\n"
 
     return html
 
@@ -101,7 +100,7 @@ if __arg_ok == True:
         for y in range(len(data)):
             if bom_dict[str(x)][csv_coloum] == data[xlsx_label][y]:
                 if not str(data.iloc[y][xlsx_label]) in queried_parts:
-                    output.write(create_html_table(str(data.iloc[y][0]), str(data.iloc[y][1]), str(data.iloc[y][xlsx_label]), bom_dict[str(x)]["Quantity Per PCB"]))
+                    output.write(create_html_table(str(data.iloc[y][0]), str(data.iloc[y][1]), str(data.iloc[y][xlsx_label])))
                     queried_parts.append(str(data.iloc[y][xlsx_label]))
                 else:
                     print(f"{Fore.YELLOW}Part exists. Skipped it.{Style.RESET_ALL}")
