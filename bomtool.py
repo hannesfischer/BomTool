@@ -59,8 +59,8 @@ def parse_bom_data_to_json():
     _new_json.write(_replaced_data)
 
 
-def create_html_table(desc, parameters, partnr):
-    html = "<tr><td>" + desc + "</td><td>" + parameters + "</td><td>" + partnr + "</td>\n"
+def create_html_table(desc, parameters, partnr, component, place):
+    html = "<tr><td>" + desc + "</td><td>" + parameters + "</td><td>" + partnr + "</td><td>" + component + "</td><td>" + place + "</td></tr>\n"
 
     return html
 
@@ -100,7 +100,7 @@ if __arg_ok == True:
         for y in range(len(data)):
             if bom_dict[str(x)][csv_coloum] == data[xlsx_label][y]:
                 if not str(data.iloc[y][xlsx_label]) in queried_parts:
-                    output.write(create_html_table(str(data.iloc[y][0]), str(data.iloc[y][1]), str(data.iloc[y][xlsx_label])))
+                    output.write(create_html_table(str(data.iloc[y][0]), str(data.iloc[y][1]), str(data.iloc[y][xlsx_label]), str(bom_dict[str(x)]["Designator"]), str(data.iloc[y]["Lagerort"])))
                     queried_parts.append(str(data.iloc[y][xlsx_label]))
                 else:
                     print(f"{Fore.YELLOW}Part exists. Skipped it.{Style.RESET_ALL}")

@@ -1,0 +1,25 @@
+body{
+    background-color: #d1d8e0;
+    position: relative;
+    font: sans-serif;
+}
+
+table{
+    text-align: center;
+    border-collapse: collapse;
+}
+td{
+    border: 1px solid black;
+    padding: 5px;
+}
+#firstrow{
+    font-weight: bolder;
+}
+tr:first-child{
+    background: none;
+}
+.footer{
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+}
