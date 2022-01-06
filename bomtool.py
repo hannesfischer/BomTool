@@ -14,7 +14,7 @@ if(arg_len != 5):
     _f = open("./req/helptext.txt", "r")
     print("Python BoM-Tool V" + __ver)
     print(_f.read())
-elif (arg_len == 2):
+elif (arg_len == 2): 
     arg = sys.argv[1]
     if arg == "-h":
         _f = open("./req/helptext.txt", "r")
